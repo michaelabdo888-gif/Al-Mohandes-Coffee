@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>المهندس للبن - أجود أنواع القهوة المختصة</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Cairo', sans-serif; scroll-behavior: smooth; }
+        
+        /* 1. تغيير الخلفية الرئيسية (Hero Section) */
+        .coffee-gradient {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+                        url('hero-bg.jpg'); /* استبدل hero-bg.jpg باسم صورتك الرئيسية */
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .cart-modal { transition: transform 0.3s ease-in-out; transform: translateX(100%); }
+        .cart-modal.active { transform: translateX(0); }
+    </style>
+</head>
+<body class="bg-stone-50 text-stone-900">
+
+    <nav class="fixed w-full z-50 bg-white/90 backdrop-blur-md shadow-sm">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="text-2xl font-bold text-amber-800">المهندس للبن</div>
+            <div class="hidden md:flex space-x-reverse space-x-8 text-lg">
+                <a href="#home" class="hover:text-amber-600 transition">الرئيسية</a>
+                <a href="#products" class="hover:text-amber-600 transition">منتجاتنا</a>
+                <a href="#about" class="hover:text-amber-600 transition">عن المتجر</a>
+                <a href="#contact" class="hover:text-amber-600 transition">اتصل بنا</a>
+            </div>
+            <button onclick="toggleCart()" class="relative p-2 bg-amber-100 rounded-full hover:bg-amber-200 transition">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-amber-900" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                </svg>
+                <span id="cart-count" class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">0</span>
+            </button>
+        </div>
+    </nav>
+
+    <section id="home" class="h-screen flex items-center justify-center text-center text-white coffee-gradient">
+        <div class="px-6">
+            <h1 class="text-5xl md:text-7xl font-bold mb-6">المهندس للبن.. دقة في الاختيار</h1>
+            <p class="text-xl md:text-2xl mb-8 max-w-2xl mx-auto">نختار لك أجود محاصيل البن من مرتفعات إثيوبيا وكولومبيا لنقدم لك تجربة هندسية فريدة في كل كوب.</p>
+            <a href="#products" class="bg-amber-700 hover:bg-amber-800 text-white px-8 py-3 rounded-full text-lg font-semibold transition inline-block">تسوق الآن</a>
+        </div>
+    </section>
+
+    <section id="products" class="py-20 container mx-auto px-6">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl font-bold text-amber-900 mb-4">محاصيلنا المختارة</h2>
+            <div class="w-24 h-1 bg-amber-600 mx-auto"></div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+            <div class="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition duration-300">
+                <div class="h-64 bg-stone-200 flex items-center justify-center relative">
+                    <img src="ethiopia-coffee.jpg" alt="قهوة إثيوبية من المهندس" class="object-cover w-full h-full">
+                    <span class="absolute top-4 right-4 bg-amber-600 text-white px-3 py-1 rounded-full text-sm">الأكثر مبيعاً</span>
+                </div>
+                <div class="p-6">
+<h3 class="text-xl font-bold mb-2">إثيوبيا - يرقاشيفي</h3>
+                    <p class="text-stone-600 mb-4 text-sm">إيحاءات الفواكه، الياسمين، وقوام خفيف ومتوازن.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-2xl font-bold text-amber-900">450 ج.م</span>
+                        <button onclick="addToCart('إثيوبيا - يرقاشيفي', 450)" class="bg-stone-900 text-white px-4 py-2 rounded-lg hover:bg-stone-700 transition">أضف للسلة</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition duration-300">
+                <div class="h-64 bg-stone-200 flex items-center justify-center relative">
+                    <img src="colombia-coffee.jpg" alt="قهوة كولومبية من المهندس" class="object-cover w-full h-full">
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold mb-2">كولومبيا - هوايلا</h3>
+                    <p class="text-stone-600 mb-4 text-sm">إيحاءات الكراميل والمكسرات، حمضية لطيفة وجميلة.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-2xl font-bold text-amber-900">380 ج.م</span>
+                        <button onclick="addToCart('كولومبيا - هوايلا', 380)" class="bg-stone-900 text-white px-4 py-2 rounded-lg hover:bg-stone-700 transition">أضف للسلة</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition duration-300">
+                <div class="h-64 bg-stone-200 flex items-center justify-center relative">
+                    <img src="brazil-coffee.jpg" alt="قهوة برازيلية من المهندس" class="object-cover w-full h-full">
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold mb-2">البرازيل - موجيانا</h3>
+                    <p class="text-stone-600 mb-4 text-sm">قوام ممتلئ، إيحاءات الشوكولاتة الداكنة والمكسرات المحمصة.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-2xl font-bold text-amber-900">320 ج.م</span>
+                        <button onclick="addToCart('البرازيل - موجيانا', 320)" class="bg-stone-900 text-white px-4 py-2 rounded-lg hover:bg-stone-700 transition">أضف للسلة</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="py-20 bg-stone-100">
+        <div class="container mx-auto px-6 flex flex-col md:flex-row items-center gap-12">
+            <div class="md:w-1/2">
+                <img src="roasting-process.jpg" alt="عملية التحميص في محمصة المهندس" class="rounded-3xl shadow-xl object-cover w-full h-96">
+            </div>
+            <div class="md:w-1/2">
+                <h2 class="text-4xl font-bold text-amber-900 mb-6">لماذا المهندس للبن؟</h2>
+                <p class="text-lg text-stone-700 mb-6 leading-relaxed">في "المهندس للبن"، نتعامل مع القهوة كعلم وفن. تبدأ رحلتنا من مزارع القهوة حول العالم، حيث نختار أفضل المحاصيل بمعايير دقيقة، ثم نقوم بتحميصها وفق بروفايلات مدروسة لضمان استخراج أفضل النكهات الممكنة.</p>
+                <div class="grid grid-cols-2 gap-6">
+                    <div class="flex items-center space-x-reverse space-x-3">
+                        <div class="bg-amber-600 text-white p-2 rounded-lg">✓</div>
+                        <span class="font-bold">تحميص يومي</span>
+                    </div>
+                    <div class="flex items-center space-x-reverse space-x-3">
+                        <div class="bg-amber-600 text-white p-2 rounded-lg">✓</div>
+                        <span class="font-bold">معايير جودة عالية</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    </body>
+</html>
